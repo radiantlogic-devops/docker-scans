@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        fid_version: ['7.4.0', '7.4.1', '7.4.2']
+        fid_version: ['7.3.24', '7.3.25', '7.3.26', '7.4.0', '7.4.1', '7.4.2']
     steps:
     - name: Run the Anchore Grype scan action
       uses: anchore/scan-action@d5aa5b6cb9414b0c7771438046ff5bcfa2854ed7
@@ -45,3 +45,4 @@ jobs:
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: ${{ steps.scan.outputs.sarif }}
+        matrix: ${{ matrix.fid_version }}
